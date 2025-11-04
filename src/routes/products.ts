@@ -4,7 +4,7 @@ import type { Product } from "../types/index.d.js";
 const router = Router();
 
 // In-memory catalog
-const products: Product[] = [
+export const products: Product[] = [   // 👈 AGREGA "export"
     {
         id: 1,
         name: "Runner Azul",
@@ -57,7 +57,6 @@ const products: Product[] = [
             "Calzado todoterreno, resistente al agua y con agarre para senderos.",
         stock: 7,
     },
-
     {
         id: 7,
         name: "Nike Jordan",

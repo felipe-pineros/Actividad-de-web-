@@ -1,10 +1,12 @@
 import { Router } from "express";
+import { products } from "./products.js"; // 👈 Importa el catálogo de productos
 const router = Router();
-// Cart is stored per-session in cookie-session
+// 🛒 Obtener el carrito actual (guardado en la sesión)
 router.get("/", (req, res) => {
     const cart = req.session.cart || [];
     res.json(cart);
 });
+// ➕ Agregar producto al carrito
 router.post("/add", (req, res) => {
     const { productId, qty } = req.body;
     if (!productId || qty == null || qty <= 0) {
@@ -13,22 +15,38 @@ router.post("/add", (req, res) => {
     const sess = req.session;
     sess.cart = sess.cart || [];
     const idx = sess.cart.findIndex((i) => i.productId === productId);
-    if (idx >= 0)
+    if (idx >= 0) {
         sess.cart[idx].qty += qty;
-    else
+    }
+    else {
         sess.cart.push({ productId, qty });
+    }
     res.json({ ok: true, cart: sess.cart });
 });
+// ➖ Eliminar un producto del carrito
 router.post("/remove", (req, res) => {
     const { productId } = req.body;
-    if (!productId)
+    if (!productId) {
         return res.status(400).json({ error: "productId requerido" });
+    }
     const sess = req.session;
     sess.cart = (sess.cart || []).filter((i) => i.productId !== productId);
     res.json({ ok: true, cart: sess.cart });
 });
+// 🔄 Vaciar completamente el carrito
 router.post("/clear", (req, res) => {
     req.session.cart = [];
     res.json({ ok: true, cart: [] });
+});
+// 💰 Calcular el total del carrito
+router.get("/total", (req, res) => {
+    const cart = req.session.cart || [];
+    // Calcula el total cruzando los IDs del carrito con el catálogo
+    const total = cart.reduce((sum, item) => {
+        const product = products.find((p) => p.id === item.productId);
+        const price = product ? product.price : 0;
+        return sum + item.qty * price;
+    }, 0);
+    res.json({ total });
 });
 export default router;

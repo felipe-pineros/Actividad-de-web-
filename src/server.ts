@@ -11,10 +11,11 @@ app.use(cors());
 app.use(express.json());
 app.use(cookieSession({
   name: "session",
-  secret: "zapateria-secret",
+  keys: ["zapateria-secret"], 
   httpOnly: true,
   maxAge: 24 * 60 * 60 * 1000
 }));
+
 
 // Static files (frontend)
 app.use(express.static("public"));

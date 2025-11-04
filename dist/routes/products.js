@@ -1,7 +1,7 @@
 import { Router } from "express";
 const router = Router();
 // In-memory catalog
-const products = [
+export const products = [
     {
         id: 1,
         name: "Runner Azul",

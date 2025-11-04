@@ -46,10 +46,10 @@ function renderProducts(products) {
       const id = Number(btn.dataset.id);
       const input = list.querySelector(`input[data-input="${id}"]`);
       const qty = Math.max(1, Number(input?.value) || 1);
-      await fetch('/api/cart', {
+      await fetch('/api/cart/add', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id, qty })
+        body: JSON.stringify({ productId: id, qty })
       });
       updateCartCount();
     });
