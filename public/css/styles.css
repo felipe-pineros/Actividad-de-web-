@@ -1,0 +1,417 @@
+/* ==========================================
+   MYSHOEME - MI ZAPATO, MI ELECCIÓN
+   Variables y Configuración Global
+   ========================================== */
+:root {
+    --primary-color: #ff3366;
+    --secondary-color: #6366f1;
+    --dark-color: #0f172a;
+    --light-bg: #f8fafc;
+    --danger-color: #ef4444;
+    --accent-yellow: #fbbf24;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+    background-color: var(--light-bg);
+}
+
+/* ==========================================
+   NAVBAR
+   ========================================== */
+.navbar-brand {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 2rem;
+    color: white !important;
+    letter-spacing: 2px;
+}
+
+.logo-emoji {
+    font-size: 2rem;
+    margin-right: 0.5rem;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+.bg-primary-custom {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #ff6b9d 100%);
+}
+
+/* ==========================================
+   BOTONES
+   ========================================== */
+.btn-primary-custom {
+    background: var(--secondary-color);
+    border: none;
+    color: white;
+    font-weight: 700;
+    padding: 0.75rem 2rem;
+    transition: all 0.3s ease;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+}
+
+.btn-primary-custom:hover {
+    background: #4f46e5;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+}
+
+.btn-outline-custom {
+    border: 2px solid white;
+    color: white;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    border-radius: 50px;
+    padding: 0.5rem 1.5rem;
+}
+
+.btn-outline-custom:hover {
+    background: white;
+    color: var(--primary-color);
+    transform: scale(1.05);
+}
+
+.btn-danger-custom {
+    background: transparent;
+    border: 2px solid var(--danger-color);
+    color: var(--danger-color);
+    font-weight: 700;
+    padding: 0.75rem 2rem;
+    transition: all 0.3s ease;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+}
+
+.btn-danger-custom:hover {
+    background: var(--danger-color);
+    color: white;
+    transform: scale(1.05);
+}
+
+.btn-secondary-custom {
+    background: var(--dark-color);
+    border: none;
+    color: white;
+    font-weight: 700;
+    padding: 0.75rem 2rem;
+    transition: all 0.3s ease;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+}
+
+.btn-secondary-custom:hover {
+    background: #334155;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.4);
+}
+
+.btn-remove {
+    background: transparent;
+    border: 2px solid var(--danger-color);
+    color: var(--danger-color);
+    padding: 0.4rem 1rem;
+    border-radius: 25px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    transition: all 0.2s ease;
+}
+
+.btn-remove:hover {
+    background: var(--danger-color);
+    color: white;
+    transform: scale(1.1);
+}
+
+/* ==========================================
+   BADGES
+   ========================================== */
+.badge-custom {
+    background: var(--accent-yellow) !important;
+    color: var(--dark-color) !important;
+    font-weight: 800;
+}
+
+/* ==========================================
+   HEADER - PÁGINA PRINCIPAL
+   ========================================== */
+header {
+    background: linear-gradient(135deg, #fef3c7 0%, #fecaca 50%, #ddd6fe 100%);
+    border-bottom: 5px solid var(--primary-color);
+    position: relative;
+    overflow: hidden;
+}
+
+header::before {
+    content: "✨";
+    position: absolute;
+    font-size: 10rem;
+    opacity: 0.1;
+    right: -50px;
+    top: -30px;
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+header h1 {
+    font-family: "Bebas Neue", sans-serif;
+    color: var(--dark-color);
+    font-weight: 800;
+    font-size: 3.5rem;
+    letter-spacing: 3px;
+}
+
+.lead {
+    color: #475569;
+    font-weight: 600;
+}
+
+/* ==========================================
+   SECCIÓN DE PRODUCTOS
+   ========================================== */
+.section-title {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 3rem;
+    letter-spacing: 2px;
+    color: var(--primary-color);
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60%;
+    height: 5px;
+    background: var(--accent-yellow);
+}
+
+.product-card {
+    transition: all 0.4s ease;
+    border: none;
+    border-radius: 20px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.product-card:hover {
+    transform: translateY(-15px) rotate(-1deg);
+    box-shadow: 0 20px 40px rgba(255, 51, 102, 0.3);
+}
+
+.product-card img {
+    transition: transform 0.4s ease;
+    height: 280px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.product-card:hover img {
+    transform: scale(1.1);
+}
+
+.product-card .card-body {
+    padding: 1.5rem;
+}
+
+.product-card h5 {
+    font-weight: 800;
+    color: var(--dark-color);
+    font-size: 1.2rem;
+}
+
+.product-card .price {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+/* ==========================================
+   CARRITO - HEADER
+   ========================================== */
+.cart-header {
+    background: linear-gradient(135deg, #fef3c7 0%, #fecaca 50%, #ddd6fe 100%);
+    padding: 3rem 0;
+    margin-bottom: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.cart-header h1 {
+    font-family: "Bebas Neue", sans-serif;
+    color: var(--primary-color);
+    font-weight: 800;
+    font-size: 3.5rem;
+    letter-spacing: 3px;
+}
+
+/* ==========================================
+   TABLA DEL CARRITO
+   ========================================== */
+.table {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.table thead {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #ff6b9d 100%);
+    color: white;
+}
+
+.table thead th {
+    border: none;
+    padding: 1.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+}
+
+.table tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.table tbody tr:hover {
+    background-color: #fef3c7;
+}
+
+.table tbody td {
+    padding: 1.5rem;
+    vertical-align: middle;
+    font-weight: 600;
+}
+
+.table tfoot {
+    background: var(--dark-color);
+    color: white;
+    font-weight: 800;
+    font-size: 1.3rem;
+}
+
+.table tfoot th {
+    padding: 1.5rem 1rem;
+}
+
+/* ==========================================
+   CARRITO VACÍO
+   ========================================== */
+.empty-cart-message {
+    text-align: center;
+    padding: 4rem;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.empty-cart-emoji {
+    font-size: 5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* ==========================================
+   FOOTER
+   ========================================== */
+footer {
+    background: var(--dark-color);
+}
+
+.footer-custom {
+    background: linear-gradient(135deg, var(--dark-color) 0%, #1e293b 100%);
+    margin-top: 4rem;
+}
+
+.social-icons a {
+    display: inline-block;
+    width: 45px;
+    height: 45px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 45px;
+    margin: 0 8px;
+    font-size: 1.3rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.social-icons a:hover {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 10px 25px rgba(255, 51, 102, 0.4);
+}
+
+.social-icons .instagram {
+    background: linear-gradient(
+        45deg,
+        #f09433 0%,
+        #e6683c 25%,
+        #dc2743 50%,
+        #cc2366 75%,
+        #bc1888 100%
+    );
+}
+
+.social-icons .facebook {
+    background: #1877f2;
+}
+
+.social-icons .twitter {
+    background: #1da1f2;
+}
+
+.social-icons .tiktok {
+    background: #000000;
+}
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.5rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .cart-header h1 {
+        font-size: 2.5rem;
+    }
+
+    .navbar-brand {
+        font-size: 1.5rem;
+    }
+
+    .logo-emoji {
+        font-size: 1.5rem;
+    }
+}
