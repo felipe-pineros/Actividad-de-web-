@@ -46,14 +46,38 @@ function renderProducts(products) {
       const id = Number(btn.dataset.id);
       const input = list.querySelector(`input[data-input="${id}"]`);
       const qty = Math.max(1, Number(input?.value) || 1);
+
+      // Envía el producto al carrito
       await fetch('/api/cart/add', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ productId: id, qty })
       });
+
+      // Actualiza el contador
       updateCartCount();
+
+      // ✅ Agrega aquí el Toast de confirmación
+      const toast = document.createElement('div');
+      toast.className = 'toast align-items-center text-bg-success border-0 position-fixed bottom-0 end-0 m-3';
+      toast.setAttribute('role', 'alert');
+      toast.innerHTML = `
+        <div class="d-flex">
+          <div class="toast-body">
+            ✅ Producto agregado al carrito
+          </div>
+        </div>
+      `;
+      document.body.appendChild(toast);
+
+      const bsToast = new bootstrap.Toast(toast, { delay: 2000 });
+      bsToast.show();
+
+      // Quita el toast después de unos segundos
+      setTimeout(() => toast.remove(), 2500);
     });
   });
+
 }
 
 function applyFilters() {

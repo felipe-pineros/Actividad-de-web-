@@ -6,6 +6,13 @@ const router = Router();
 // 📁 Ruta del archivo de persistencia
 const DATA_PATH = path.join(process.cwd(), "src", "data", "cart.json");
 // 🧩 Funciones auxiliares
+
+function showCartToast() {
+  const toastEl = document.getElementById('cartToast');
+  const toast = new bootstrap.Toast(toastEl, { delay: 3000 }); // 3 segundos
+  toast.show();
+}
+
 async function loadCart() {
     try {
         const data = await fs.readFile(DATA_PATH, "utf-8");
@@ -26,8 +33,18 @@ router.get("/", async (_req, res) => {
 // ➕ Agregar producto
 router.post("/add", async (req, res) => {
     const { productId, qty } = req.body;
-    if (!productId || qty == null || qty <= 0) {
-        return res.status(400).json({ error: "Datos inválidos" });
+    // ✅ Validaciones
+    if (!productId || typeof qty !== "number" || qty <= 0) {
+        return res.status(400).json({
+            error: "Datos inválidos: 'productId' es obligatorio y 'qty' debe ser mayor que 0.",
+        });
+    }
+    // ✅ Verificar que el producto exista
+    const productExists = products.some((p) => p.id === productId);
+    if (!productExists) {
+        return res.status(400).json({
+            error: `El producto con ID '${productId}' no existe.`,
+        });
     }
     const cart = await loadCart();
     const idx = cart.findIndex((i) => i.productId === productId);
@@ -41,10 +58,28 @@ router.post("/add", async (req, res) => {
 // ➖ Eliminar producto
 router.post("/remove", async (req, res) => {
     const { productId } = req.body;
-    if (!productId)
-        return res.status(400).json({ error: "productId requerido" });
+    // ✅ Validar que venga el ID
+    if (!productId) {
+        return res.status(400).json({
+            error: "Debe proporcionar el 'productId' para eliminar un producto del carrito.",
+        });
+    }
+    // ✅ Validar que el producto exista
+    const productExists = products.some((p) => p.id === productId);
+    if (!productExists) {
+        return res.status(400).json({
+            error: `No se puede eliminar: el producto con ID '${productId}' no existe.`,
+        });
+    }
     let cart = await loadCart();
+    const beforeCount = cart.length;
     cart = cart.filter((i) => i.productId !== productId);
+    // Si el producto no estaba en el carrito
+    if (cart.length === beforeCount) {
+        return res.status(400).json({
+            error: `El producto con ID '${productId}' no estaba en el carrito.`,
+        });
+    }
     await saveCart(cart);
     res.json({ ok: true, cart });
 });
