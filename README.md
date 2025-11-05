@@ -4,9 +4,12 @@ Proyecto de tienda virtual desarrollada con **Express**, **TypeScript** y **Boot
 ---
 
 ### Integrantes y Roles  
-- Felipe Piñeros — Backend y estructura del servidor  
-- Juan Pablo Marquez — Pruebas automatizadas y documentación  
-- Juan Pablo Marquez — Frontend y diseño visual  
+- Karen Daniela Ruiz Madrigal: Configuración del entorno y Frontend
+- Andrés Felipe Piñeros Lozano: Adición de catalogo de productos e implementación de filtro de búsqueda
+- Juan Andres Quiceno Banoy: Backend y persistencia
+- Sebastian Luis Osorio puntos: Validación y mejora visual del Carrito
+- Sharon Carolina Gomez Soto: Pruebas automatizadas
+- Juan Pablo Marquez — Pruebas: automatizadas y documentación  
 
 
 ---
