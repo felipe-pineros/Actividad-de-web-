@@ -6,13 +6,6 @@ const router = Router();
 // 📁 Ruta del archivo de persistencia
 const DATA_PATH = path.join(process.cwd(), "src", "data", "cart.json");
 // 🧩 Funciones auxiliares
-
-function showCartToast() {
-  const toastEl = document.getElementById('cartToast');
-  const toast = new bootstrap.Toast(toastEl, { delay: 3000 }); // 3 segundos
-  toast.show();
-}
-
 async function loadCart() {
     try {
         const data = await fs.readFile(DATA_PATH, "utf-8");
